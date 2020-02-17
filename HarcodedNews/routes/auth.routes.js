@@ -8,6 +8,8 @@ const User = require("../models/User.model")
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+// Cloudinary
+const uploadCloud = require('../config/cloudinary.config')
 
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
@@ -57,6 +59,7 @@ router.post("/signup", (req, res, next) => {
       })
   });
 });
+
 
 router.get("/logout", (req, res) => {
   req.logout();
