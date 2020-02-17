@@ -12,6 +12,19 @@ img{
 }
 
 .newsCard{
-  background-color: rgba(200, 200, 200, .3);
+  background-color: rgba(200, 200, 200, .1);
   padding: 10px;
+}
+
+a {
+  text-decoration: none;
+  color: rgb(100, 100, 100);
+  
+  &:hover{
+    text-decoration: none;
+    color:  rgb(100, 100, 100);
+  }
+}
+.icon{
+  width: 40%; 
 }

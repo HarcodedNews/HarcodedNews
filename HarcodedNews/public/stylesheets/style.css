@@ -9,7 +9,17 @@ img {
   width: 100%; }
 
 .newsCard {
-  background-color: rgba(200, 200, 200, 0.3);
+  background-color: rgba(200, 200, 200, 0.1);
   padding: 10px; }
+
+a {
+  text-decoration: none;
+  color: #646464; }
+  a:hover {
+    text-decoration: none;
+    color: #646464; }
+
+.icon {
+  width: 40%; }
 
 /*# sourceMappingURL=style.css.map */
