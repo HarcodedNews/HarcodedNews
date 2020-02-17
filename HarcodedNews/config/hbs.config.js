@@ -1,4 +1,5 @@
 const hbs = require('hbs')
+const path = require('path')
 
 hbs.registerHelper('ifUndefined', (value, options) => {
     if (arguments.length < 2) throw new Error("Handlebars Helper ifUndefined needs 1 parameter")
@@ -6,4 +7,6 @@ hbs.registerHelper('ifUndefined', (value, options) => {
     else return options.fn(this)
 })
 
-hbs.registerPartials(__dirname, '..', 'views', 'partials')
+hbs.registerPartials(path.join(__dirname, '..', 'views', 'partials'))
+
+module.exports = hbs
