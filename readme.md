@@ -21,6 +21,7 @@ id | Method | Path  | Description
 15 | get | /signup | Manda el formulario para registrarte en la pagina
 16 | post | /signup	| Te regsitra en la pagina (base de datos)
 17 | get | /logout | Te hacer log-out de la pagina
+18| post | /profile/add-image | 
 
 ## Modelos
 
