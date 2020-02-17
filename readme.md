@@ -5,7 +5,7 @@
 id | Method | Path  | Description
 -- | ------ | ------ | ----------
 1 | get | / | Pagina principal con noticias
-2 | get | /find?query=query | Peticiones de la barra de busqueda
+2 | get | news/find?query=query | Peticiones de la barra de busqueda
 3 | get | /news/:id | Visualizacion de la noticia
 4 | get | /profile | Pagina del usuario (Noticias y temas favoritos)
 5 | get | /comments/create?idNew=id | Crear un comentario
