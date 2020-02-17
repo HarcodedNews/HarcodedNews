@@ -14,6 +14,6 @@ require('./config/debug.config')
 
 //Base URLs
 app.use('/', require('./routes/index'))
-app.use('/auth', require('./routes/auth'))
+app.use('/auth', require('./routes/auth.routes'))
 
 module.exports = app

@@ -1,12 +1,13 @@
 const express = require("express");
 const passport = require('passport');
 const router = express.Router();
-const User = require("../models/User.model");
 
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcrypt");
 const bcryptSalt = 10;
 
+// Cloudinary
+const uploadCloud = require('../config/cloudinary.config')
 
 router.get("/login", (req, res, next) => {
   res.render("auth/login", { "message": req.flash("error") });
@@ -26,15 +27,13 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  if (username === "" || password === "")
-  {
+  if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
-    if (user !== null)
-    {
+    if (user !== null) {
       res.render("auth/signup", { message: "The username already exists" });
       return;
     }
@@ -56,6 +55,7 @@ router.post("/signup", (req, res, next) => {
       })
   });
 });
+
 
 router.get("/logout", (req, res) => {
   req.logout();
