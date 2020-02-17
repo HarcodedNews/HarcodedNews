@@ -1,9 +1,17 @@
-<h1>Este es tu perfil amigo.</h1>
+<h1>Bienvenido {{username}}.</h1>
+
 <section>
-    <h2>Upload your photo on Cloudinary</h2>
+    <h2>Esta es tu información:</h2>
+    <p>Usuario: {{username}}</p>
+    <img class="userimage" src="{{photo}}" alt="{{username}}">
+    <p> <small>Si quieres cambiar tu imagen de perfil, haz click aquí:</small></p>
     <form action="/profile/add-image" method="POST" enctype="multipart/form-data">
-        <input type="text" name="description" placeholder="Incluye la descripcion de la imagen"><br>
-        <input type="file" name="phototoupload"><br>
+        <input type="file" name="photoupload"><br>
         <input type="submit" value="Save"><br>
-    </form>
+    </form> <br>
+    <h2>Estas son tus noticias favoritas:</h2>
+
 </section>
+{{!-- {{#each user}}
+<p>{{username}}</p>
+{{/each}} --}}
