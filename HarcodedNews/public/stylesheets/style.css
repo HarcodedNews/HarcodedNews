@@ -26,4 +26,11 @@ a {
 .userimage {
   width: 90px; }
 
+.imgComments {
+  width: 200px; }
+
+.commentArea {
+  height: 100px;
+  width: 500px; }
+
 /*# sourceMappingURL=style.css.map */

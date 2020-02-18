@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const axios = require('axios')
+
 const User = require('../models/User.model')
+
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 const axios_ = require('axios')
 
@@ -51,7 +53,13 @@ router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => 
       return
     }
   })
-})
+  router.get('/add-favorite?', ensureLoggedIn('/auth/login)'), (req, res) => {
+  })
+
+  // router.get('/', (req, res, next) => { })
+  // router.post('addNew', (req, res) => {
+  //   const { id, title, description, url, image,} = req.body
+  // })
 
 
-module.exports = router;
+  module.exports = router;

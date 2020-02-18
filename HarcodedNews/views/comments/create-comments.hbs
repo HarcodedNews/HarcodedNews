@@ -1,11 +1,24 @@
 <h1>Asi creas un comment</h1>
 
 <figure>
-    <img src="{{image}}" alt="News image">
+    <img src="{{image}}" class="imgComments" alt="News image">
 </figure>
 
 <h2>{{title}}</h2>
 
 <h5>{{description}}</h5>
 
-<img href="{{url}}">
+<img class="imgComments" href="{{url}}">
+<div>
+    <a href="{{url}}">Lee la noticia completa</a><br>
+</div>
+<br>
+
+<p1><b>Comentar</b></p1>
+<form action="" method="POST" id="commentform">
+    <div id="comment-message" class="form-row">
+        <textarea class="commentArea" name="comment" placeholder="Deja tu comentario" id="comment"></textarea>
+    </div>
+    <a href="#"><input type="submit" name="dsubmit" id="commentSubmit" value="Submit Comment"></a>
+    <input style="width: 30px" type="checkbox" value="1" name="subscribe" id="subscribe" checked="checked">
+</form>
