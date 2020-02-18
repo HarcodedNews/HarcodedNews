@@ -10,6 +10,7 @@ arr.forEach(elm => {
         {
             axios.delete(`/delete-favorite?id=${elm.getAttribute("id")}`)
                 .then(data => {
+                    console.log(data.status)
                     if (data.status == 200)
                     {
                         elm.toggleAttribute("favorite")
@@ -22,6 +23,7 @@ arr.forEach(elm => {
         {
             axios.put(`/add-favorite?id=${elm.getAttribute("id")}`)
                 .then(data => {
+                    console.log(data.status)
                     if (data.status == 200)
                     {
                         elm.toggleAttribute("favorite")

@@ -48,18 +48,17 @@ router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => 
       req.user.favNews.splice(idx, 1)
 
       User.findByIdAndUpdate(req.user._id, { favNews: req.user.favNews })
-        .then(user => res.status(200))
+        .then(user => res.status(200).json(user))
         .catch(err => console.log(err))
       return
     }
   })
-  router.get('/add-favorite?', ensureLoggedIn('/auth/login)'), (req, res) => {
-  })
+})
 
-  // router.get('/', (req, res, next) => { })
-  // router.post('addNew', (req, res) => {
-  //   const { id, title, description, url, image,} = req.body
-  // })
+// router.get('/', (req, res, next) => { })
+// router.post('addNew', (req, res) => {
+//   const { id, title, description, url, image,} = req.body
+// })
 
 
-  module.exports = router;
+module.exports = router
