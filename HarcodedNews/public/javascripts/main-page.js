@@ -1,18 +1,23 @@
-let arr = [...document.getElementsByClassName("link")]
-
+let arr = [...document.getElementsByClassName("fav-image")]
+setFavs()
 arr.forEach(elm => {
     elm.onclick = e => {
 
         e.preventDefault()
 
-        if (elm.getAttribute("activated"))
+        if (elm.hasAttribute("favorite"))
         {
-            axios.put(`/delete.favorite?${elm.getAttribute("id")}`)
+            elm.toggleAttribute("favorite")
+            setFavs()
+            //axios.put(`/delete.favorite?${elm.getAttribute("id")}`)
+
         } else
         {
-            axios.put(`/add-favorite?${elm.getAttribute("id")}`)
-        }
 
+            elm.toggleAttribute("favorite")
+            setFavs()
+            //axios.put(`/add-favorite?${elm.getAttribute("id")}`)
+        }
     }
 })
 

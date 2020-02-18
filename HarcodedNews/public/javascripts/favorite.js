@@ -1,22 +1,21 @@
-let divs = document.getElementsByClassName('fav-image')
+let icons = document.getElementsByClassName('fav-image')
 let favLinks = document.getElementsByClassName('fav-link')
 let quitFavLinks = document.getElementsByClassName('quit-fav-link')
 
-divs = [...divs]
-favLinks = [...favLinks]
-quitFavLinks = [...quitFavLinks]
+icons = [...icons]
 
-console.log(divs, favLinks, quitFavLinks)
-
-divs.forEach((elm, idx) => {
-    if (elm.getAttribute('favorite'))
+function setFavs() {
+  icons.forEach((elm, idx) => {
+    if (!elm.hasAttribute('favorite'))
     {
-        favLinks[idx].classList.remove('hidden')
-        quitFavLinks[idx].classList.add('hidden')
-
+      favLinks[idx].classList.remove('hidden')
+      quitFavLinks[idx].classList.add('hidden')
     } else
     {
-        favLinks[idx].classList.add('hidden')
-        quitFavLinks[idx].classList.revmove('hidden')
+      favLinks[idx].classList.add('hidden')
+      quitFavLinks[idx].classList.remove('hidden')
     }
-})
+  })
+}
+
+
