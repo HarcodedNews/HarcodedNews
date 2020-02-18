@@ -48,7 +48,7 @@ router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => 
       req.user.favNews.splice(idx, 1)
 
       User.findByIdAndUpdate(req.user._id, { favNews: req.user.favNews })
-        .then(user => res.status(200).json(user))
+        .then(user => res.status(200).json("okay"))
         .catch(err => console.log(err))
       return
     }
