@@ -12,8 +12,7 @@ const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" 
 router.get('/', (req, res, next) => {
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
-      if (req.user)
-      {
+      if (req.user) {
         req.user.favNews.forEach(elm => {
           news.data.news.forEach(elm_ => {
             if (elm === elm_.id) elm.favorite = true
@@ -28,8 +27,7 @@ router.get('/', (req, res, next) => {
 router.put('/add-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
 
   req.user.favNews.forEach(elm => {
-    if (elm === req.query.id)
-    {
+    if (elm === req.query.id) {
       res.json('')
       return
     }
@@ -43,8 +41,7 @@ router.put('/add-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
 router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
 
   req.user.favNews.forEach((elm, idx) => {
-    if (elm === req.query.id)
-    {
+    if (elm === req.query.id) {
       req.user.favNews.splice(idx, 1)
 
       User.findByIdAndUpdate(req.user._id, { favNews: req.user.favNews })
@@ -53,13 +50,12 @@ router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => 
       return
     }
   })
-  router.get('/add-favorite?', ensureLoggedIn('/auth/login)'), (req, res) => {
-  })
+})
 
-  // router.get('/', (req, res, next) => { })
-  // router.post('addNew', (req, res) => {
-  //   const { id, title, description, url, image,} = req.body
-  // })
+// router.get('/', (req, res, next) => { })
+// router.post('addNew', (req, res) => {
+//   const { id, title, description, url, image,} = req.body
+// })
 
 
-  module.exports = router;
+module.exports = router;
