@@ -61,4 +61,4 @@ router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => 
 // })
 
 
-module.exports = router
+module.exports = router;
