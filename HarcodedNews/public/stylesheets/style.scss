@@ -1,10 +1,10 @@
 body {
-  padding: 50px;
+  padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.hidden{
+  display: none;
 }
 
 img{
@@ -13,20 +13,24 @@ img{
 
 .newsCard{
   background-color: rgba(200, 200, 200, .1);
-  padding: 10px;
+  margin: 10px;
 }
 
 a {
   text-decoration: none;
-  color: rgb(100, 100, 100);
+  color: rgb(92, 119, 238);
+  cursor: pointer;
   
   &:hover{
     text-decoration: none;
     color:  rgb(100, 100, 100);
   }
 }
+
 .icon{
-  width: 40%; 
+  width: 40%;
+}
+
 .userimage {
-width:90px
+width: 90px;
 }

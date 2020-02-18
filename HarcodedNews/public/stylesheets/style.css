@@ -1,26 +1,28 @@
 body {
-  padding: 50px;
+  padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
 
-a {
-  color: #00B7FF; }
+.hidden {
+  display: none; }
 
 img {
   width: 100%; }
 
 .newsCard {
   background-color: rgba(200, 200, 200, 0.1);
-  padding: 10px; }
+  margin: 10px; }
 
 a {
   text-decoration: none;
-  color: #646464; }
+  color: #5c77ee;
+  cursor: pointer; }
   a:hover {
     text-decoration: none;
     color: #646464; }
 
 .icon {
   width: 40%; }
+
 .userimage {
   width: 90px; }
 

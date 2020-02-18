@@ -1,32 +1,35 @@
-<div class="col-md-4 newsCard">
+<div class="col-md-4">
 
-    <a href="{{url}}">
-        <figure><img src="{{image}}" alt="News image"></figure>
+    <div class="newsCard">
+        <a href="{{url}}">
+            <figure><img src="{{image}}" alt="News image"></figure>
+        </a>
         <h2>{{title}}</h2>
         <h5>{{description}}</h5>
-    </a>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <a clas="link" href="{{url}}">Read the new</a>
-            </div>
-            <div class="col-md-4">
-                {{#if favorite}}
-                <a class="link" id="{{id}}">
-                    <figure><img class="icon" src="../../images/filled_star.png" alt="add-fav"></figure>
-                </a>
-                {{else}}
-                <a class="link" id="{{id}}">
-                    <figure><img class="icon" src="../../images/empty-star.png" alt="quit-fav"></figure>
-                </a>
-                {{/if}}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <a clas="link" href="{{url}}">Read the new</a>
+                </div>
+                <div class="col-md-4">
+                    <div class="fav-image" favorite="{{favorite}}">
+                        <a class="fav-link" activated="true" id="{{id}}">
+                            <figure><img class="icon" src="../../images/filled_star.png" alt="add-fav"></figure>
+                        </a>
+                        <a class="quit-fav-link" activated="false" id="{{id}}">
+                            <figure><img class="icon" src="../../images/empty-star.png" alt="quit-fav"></figure>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <a href="/comments/create-comments/{{id}}">Crea tu comentario</a>
+
+        <br>
+
+
     </div>
-
-    <a href="/comments/create-comments/{{id}}">Crea tu comentario</a>
-
-    <br>
 
 </div>
