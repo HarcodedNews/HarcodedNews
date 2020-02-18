@@ -6,7 +6,7 @@ icons = [...icons]
 
 function setFavs() {
   icons.forEach((elm, idx) => {
-    if (!elm.hasAttribute('favorite'))
+    if (elm.hasAttribute('favorite'))
     {
       favLinks[idx].classList.remove('hidden')
       quitFavLinks[idx].classList.add('hidden')
