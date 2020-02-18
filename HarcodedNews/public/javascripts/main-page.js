@@ -5,13 +5,18 @@ arr.forEach(elm => {
     elm.onclick = e => {
 
         e.preventDefault()
-        console.log(elm.getAttribute("id"))
 
         if (elm.hasAttribute("favorite"))
         {
-            elm.toggleAttribute("favorite")
-            setFavs()
-            //axios.put(`/delete.favorite?${elm.getAttribute("id")}`)
+            axios.delete(`/delete-favorite?id=${elm.getAttribute("id")}`)
+                .then(data => {
+                    if (data.status == 200)
+                    {
+                        elm.toggleAttribute("favorite")
+                        setFavs()
+                    }
+                })
+                .catch(err => console.log(err))
 
         } else
         {
