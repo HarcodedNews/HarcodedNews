@@ -5,7 +5,7 @@ const News = require('../models/News.model')
 const axiosApp = axios.create({ baseURL: "https://api.currentsapi.services/v1" })
 
 router.get('/create-comments/:id', (req, res, next) => {
-    console.log(req.params.id)
+    // console.log(req.params.id)
     const paramsId = req.params.id
 
     // if ()
@@ -21,7 +21,7 @@ router.get('/create-comments/:id', (req, res, next) => {
 
             //////////////////------------------------------------/////////////////////////////////////
 
-            // const matchingNew = new.filter(news => news.id != paramsId)
+            // const matchingNew = news.filter(news => news.id != paramsId)
             // matchingNew[0]
 
             //////////////////------------------------------------/////////////////////////////////////
@@ -30,14 +30,7 @@ router.get('/create-comments/:id', (req, res, next) => {
 
 
 
-
-
-
-
-
-
-
-            console.log(news)
+            // console.log(news)
             for (let i = 0; i < news.data.news.length; i++) {
                 //console.log(news.data.news[i].paramsId)
                 if (news.data.news[i].id == paramsId) {
@@ -49,7 +42,7 @@ router.get('/create-comments/:id', (req, res, next) => {
                     const image = news.data.news[i].image
                     // const { id, title, description, url, image } = news.data.news[i]
 
-                    //upsert: Update and insert (Inserta un nuevo objeto en BD si no lo encuentra.
+                    //upsert: Update and insert (Inserta un nuevo objeto en BD si no lo encuentra)
                     News.findOneAndUpdate({ id: paramsId }, { id, title, description, url, image }, { upsert: true, new: true })
                         .then(() => {
                             res.render('comments/create-comments', { id, title, description, url, image })

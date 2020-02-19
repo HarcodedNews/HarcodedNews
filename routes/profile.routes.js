@@ -2,8 +2,6 @@ const express = require('express')
 const router = express.Router()
 const User = require("../models/User.model");
 const axios = require('axios')
-const multer = require('multer')
-const upload = multer({ dest: './public/uploads/' })
 const uploadCloud = require('../config/cloudinary.config')
 
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
