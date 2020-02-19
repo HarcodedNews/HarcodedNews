@@ -32,7 +32,6 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/add-favorite?', (req, res) => {
-
   req.user.favNews.forEach(elm => {
     if (elm == req.query.id)
     {
