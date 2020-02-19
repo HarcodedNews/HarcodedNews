@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const newsSchema = Schema({
-    id: String,
+    idNew: { type: String, unique: true },
     title: String,
     description: String,
     url: String,

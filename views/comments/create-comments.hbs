@@ -14,11 +14,24 @@
 </div>
 <br>
 
+
+{{!-- 
 <p1><b>Comentar</b></p1>
 <form action="" method="POST" id="commentform">
     <div id="comment-message" class="form-row">
         <textarea class="commentArea" name="comment" placeholder="Deja tu comentario" id="comment"></textarea>
     </div>
     <a href="#"><input type="submit" name="dsubmit" id="commentSubmit" value="Submit Comment"></a>
-    <input style="width: 30px" type="checkbox" value="1" name="subscribe" id="subscribe" checked="checked">
+</form> --}}
+
+<form id="commentFrom">
+    <div>
+        <label for="the-comment-input"> Comenta: </label>
+        <input id="commentInfo" data-id="{{id}}" type="text" name="comment" class="the-name">
+    </div>
+
+    <button> Comment </button>
 </form>
+
+<script src="/javascripts/add-news.js"></script>
+<script src="/javascripts/comments.js"></script>
