@@ -10,7 +10,7 @@ const axios_ = require('axios')
 
 // const isLogged = (req, res, next) => {
 //   if (req.isAuthenticated()) return next()
-//   return res.status(303).json('/auth/login')
+//   return res.status(304).json('/auth/login')
 // }
 
 const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" })
@@ -36,7 +36,7 @@ router.put('/add-favorite?', (req, res) => {
   req.user.favNews.forEach(elm => {
     if (elm == req.query.id)
     {
-      res.status(303).json('')
+      res.status(304).json('')
       return
     }
   })
@@ -67,11 +67,11 @@ router.put('/add-news', (req, res) => {
     .then(dbnew => {
       if (dbnew)
       {
-        res.status(303).json("Ya existe")
+        res.json({ status: "ko", id: dbnew._id })
         return
       }
       News.create(req.body.new)
-        .then(() => res.status(200).json("okay"))
+        .then(newNew => res.status(200).json({ status: "ok", id: newNew._id }))
         .catch(err => console.log("ha habido un error: ", err))
     })
     .catch(err => console.log("ERROR WEEE: ", err))

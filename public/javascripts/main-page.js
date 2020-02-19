@@ -26,7 +26,7 @@ arr.forEach(elm => {
                     {
                         elm.toggleAttribute("favorite")
                         setFavs()
-                    } else if (data.status == 303) window.location = data.data
+                    } else if (data.status == 304) window.location = data.data
                 })
                 .catch(err => {
                     console.log("ha ocurrido un error: ", err)
