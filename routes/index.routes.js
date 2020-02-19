@@ -7,6 +7,11 @@ const User = require('../models/User.model')
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 const axios_ = require('axios')
 
+const isLogged = (req, res, next) => {
+  if (req.isAuthenticated()) return next()
+  return res.redirect('/auth/login')
+}
+
 const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" })
 
 router.get('/', (req, res, next) => {
@@ -25,12 +30,12 @@ router.get('/', (req, res, next) => {
     .catch(err => console.log("Ha habido un error: ", err))
 })
 
-router.put('/add-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
+router.get('/add-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
 
   req.user.favNews.forEach(elm => {
     if (elm === req.query.id)
     {
-      res.json('')
+      res.status(303).json('')
       return
     }
   })

@@ -20,13 +20,14 @@ arr.forEach(elm => {
 
         } else
         {
-            axios.put(`/add-favorite?id=${elm.getAttribute("id")}`)
+            axios.get(`/add-favorite?id=${elm.getAttribute("id")}`)
                 .then(data => {
                     if (data.status == 200)
                     {
                         elm.toggleAttribute("favorite")
                         setFavs()
                     }
+                    window.history.href = "/auth/login"
                 })
                 .catch(err => console.log("ha ocurrido un error: ", err))
         }

@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const commentSchema = Schema({
     idNews: String,
-    idAuthor: { type: Schema.Types.ObjectId, ref: "User" },
+    iauthorName: String,
     comment: String,
 }, {
     timestamps: true

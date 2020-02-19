@@ -6,8 +6,7 @@ const userSchema = new Schema({
   email: String,
   password: String,
   photo: String,
-  favNews: [String],
-  comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
+  favNews: [{ type: Schema.Types.ObjectId, ref: "News" }]
 }, {
   timestamps: true
 })

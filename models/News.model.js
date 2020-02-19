@@ -7,6 +7,7 @@ const newsSchema = Schema({
     description: String,
     url: String,
     image: String,
+    comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }]
 }, {
     timestamps: true
 })
