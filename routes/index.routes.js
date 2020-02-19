@@ -3,14 +3,15 @@ const router = express.Router()
 const axios = require('axios')
 
 const User = require('../models/User.model')
+const News = require('../models/News.model')
 
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 const axios_ = require('axios')
 
-const isLogged = (req, res, next) => {
-  if (req.isAuthenticated()) return next()
-  return res.redirect('/auth/login')
-}
+// const isLogged = (req, res, next) => {
+//   if (req.isAuthenticated()) return next()
+//   return res.status(303).json('/auth/login')
+// }
 
 const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" })
 
@@ -33,16 +34,12 @@ router.get('/', (req, res, next) => {
 router.put('/add-favorite?', (req, res) => {
 
   req.user.favNews.forEach(elm => {
-    if (elm === req.query.id)
+    if (elm == req.query.id)
     {
       res.status(303).json('')
       return
     }
   })
-  if (ensureLoggedOut())
-  {
-    res.status("303").json("fail")
-  }
 
   User.findByIdAndUpdate(req.user._id, { $push: { favNews: req.query.id } })
     .then(updated => res.status(200).json(updated))
@@ -64,10 +61,21 @@ router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => 
   })
 })
 
-// router.get('/', (req, res, next) => { })
-// router.post('addNew', (req, res) => {
-//   const { id, title, description, url, image,} = req.body
-// })
+router.put('/add-news', (req, res) => {
 
+  News.findOne({ idNew: req.body.new.idNew })
+    .then(dbnew => {
+      if (dbnew)
+      {
+        res.status(303).json("Ya existe")
+        return
+      }
+      News.create(req.body.new)
+        .then(() => res.status(200).json("okay"))
+        .catch(err => console.log("ha habido un error: ", err))
+    })
+    .catch(err => console.log("ERROR WEEE: ", err))
+
+})
 
 module.exports = router;

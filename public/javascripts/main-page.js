@@ -22,16 +22,15 @@ arr.forEach(elm => {
         {
             axios.put(`/add-favorite?id=${elm.getAttribute("id")}`)
                 .then(data => {
-                    console.log(data)
                     if (data.status == 200)
                     {
                         elm.toggleAttribute("favorite")
                         setFavs()
-                    } else window.location = "/auth/login"
+                    } else if (data.status == 303) window.location = data.data
                 })
                 .catch(err => {
-                    window.location = "/auth/login"
                     console.log("ha ocurrido un error: ", err)
+                    window.location = "/auth/login"
                 })
         }
     }
