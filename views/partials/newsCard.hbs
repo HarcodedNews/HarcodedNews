@@ -2,15 +2,15 @@
 
     <div class="newsCard">
         <a href="{{url}}">
-            <figure><img src="{{image}}" alt="News image"></figure>
+            <figure><img class="image" src="{{image}}" alt="News image"></figure>
         </a>
-        <h2>{{title}}</h2>
-        <h5>{{description}}</h5>
+        <h2 class="titleNew">{{title}}</h2>
+        <h5 class="description">{{description}}</h5>
 
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <a clas="link" href="{{url}}">Read the new</a>
+                    <a class="link" href="{{url}}">Read the new</a>
                 </div>
                 <div class="col-md-4">
                     <a class="fav-image" {{favorite}} id="{{id}}">
@@ -26,7 +26,7 @@
             </div>
         </div>
 
-        <a href="/comments/create-comments/{{id}}">Crea tu comentario</a>
+        <a href="/comments/create-comments/{{id}}" class="createComment">Crea tu comentario</a>
 
         <br>
 

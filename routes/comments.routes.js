@@ -54,19 +54,21 @@ const axiosApp = axios.create({ baseURL: "https://api.currentsapi.services/v1" }
 
 
 router.get('/create-comments/:id', (req, res) => {
-    News.findOne({ idNew: req.params.id })
+    News.findById({ _id: req.params.id })
         .populate('comments')
-        .then(notice => res.render('comments/create-comments', { notice }))
+        .then(notice => res.render('comments/create-comments', notice))
         .catch(err => console.log(err))
 })
 
-router.post('/create-comments/comments', (req, res, next) => {
-    console.log(req.body)
+router.post('/create-comments/comments/', (req, res, next) => {
     Comment.create({
         comment: req.body.commentInfo,
         iauthorName: req.user.username,
         idNews: req.body.id
-    })
+    }).then(createdComment => {
+        News.findByIdAndUpdate(req.body.id, { $push: { comments: createdComment._id } })
+            .catch(err => err)
+    }).catch(err => err)
 })
 
 
