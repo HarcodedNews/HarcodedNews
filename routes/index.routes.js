@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
     .catch(err => console.log("Ha habido un error: ", err))
 })
 
-router.get('/add-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
+router.put('/add-favorite?', (req, res) => {
 
   req.user.favNews.forEach(elm => {
     if (elm === req.query.id)
@@ -39,6 +39,10 @@ router.get('/add-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
       return
     }
   })
+  if (ensureLoggedOut())
+  {
+    res.status("303").json("fail")
+  }
 
   User.findByIdAndUpdate(req.user._id, { $push: { favNews: req.query.id } })
     .then(updated => res.status(200).json(updated))
