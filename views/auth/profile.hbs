@@ -3,12 +3,17 @@
 <section>
     <h2>Esta es tu información:</h2>
     <p>Usuario: {{username}}</p>
+    {{#if photo}}
     <img class="userimage" src="{{photo}}" alt="{{username}}">
     <p> <small>Si quieres cambiar tu imagen de perfil, haz click aquí:</small></p>
+    {{else}}
+    <p>Puedes añadir imagen aqui</p>
+    {{/if}}
     <form action="/profile/add-image" method="POST" enctype="multipart/form-data">
         <input type="file" name="photoupload"><br>
         <input type="submit" value="Save"><br>
-    </form> <br>
+    </form>
+    <br>
     <h2>Estas son tus noticias favoritas:</h2>
 
 </section>
