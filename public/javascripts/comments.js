@@ -3,9 +3,9 @@
 
 
 document.querySelector('#commentFrom').onsubmit = e => {
-    alert("fsdaf")
+    // alert("fsdaf")
     e.preventDefault()
-    console.log("enviado")
+    // console.log("enviado")
     const id = document.querySelector('#commentInfo').dataset.id
     const commentInfo = document.getElementById("commentInfo").value
 

@@ -17,8 +17,7 @@ const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" 
 router.get('/', (req, res, next) => {
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
-      if (req.user)
-      {
+      if (req.user) {
         req.user.favNews.forEach(elm => {
           news.data.news.forEach(elm_ => {
             if (elm === elm_.id) elm.favorite = true
@@ -33,14 +32,12 @@ router.get('/', (req, res, next) => {
 router.put('/add-favorite?', (req, res) => {
 
   req.user.favNews.forEach(elm => {
-    if (elm === req.query.id)
-    {
+    if (elm === req.query.id) {
       res.status(303).json('')
       return
     }
   })
-  if (ensureLoggedOut())
-  {
+  if (ensureLoggedOut()) {
     res.status("303").json("fail")
   }
 
@@ -52,8 +49,7 @@ router.put('/add-favorite?', (req, res) => {
 router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
 
   req.user.favNews.forEach((elm, idx) => {
-    if (elm === req.query.id)
-    {
+    if (elm === req.query.id) {
       req.user.favNews.splice(idx, 1)
 
       User.findByIdAndUpdate(req.user._id, { favNews: req.user.favNews })
@@ -67,6 +63,22 @@ router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => 
 // router.get('/', (req, res, next) => { })
 // router.post('addNew', (req, res) => {
 //   const { id, title, description, url, image,} = req.body
+// })
+
+
+// router.get('/search/:sch', (req, res, next) => {
+//   let searchkey = req.params.sch
+//   axiosApi.get(`/search?keywords=${searchkey}&apiKey=${process.env.apiKey}`)
+//     // .then(news => {
+//     //   if (req.user) {
+//     //     req.user.favNews.forEach(elm => {
+//     //       news.data.news.forEach(elm_ => {
+//     //         if (elm === elm_.id) elm.favorite = true
+//     //       })
+//     //     })
+//     //   }
+//     .then(x => res.render('index', { news: news.data.news }))
+//     .catch(err => console.log("Ha habido un error: ", err))
 // })
 
 
