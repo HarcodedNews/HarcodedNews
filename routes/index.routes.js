@@ -20,44 +20,56 @@ router.get('/', (req, res, next) => {
     .then(news => {
       if (req.user)
       {
-        req.user.favNews.forEach(elm => {
-          news.data.news.forEach(elm_ => {
-            if (elm === elm_.id) elm.favorite = true
-          })
-        })
+        User.findById(req.user._id)
+          .populate("favNews")
+          .then(userAndNews => {
+            news.data.news.forEach(elm => {
+              userAndNews.favNews.forEach(elm_ => {
+                if (elm.id == elm_.idNew)
+                {
+                  console.log("FAVORITOOOOOOOOO")
+                  elm.favorite = true
+                }
+              })
+            })
+            res.render('index', { news: news.data.news })
+          }).catch(err => err)
+
       }
-      res.render('index', { news: news.data.news })
     })
     .catch(err => console.log("Ha habido un error: ", err))
 })
 
 router.put('/add-favorite?', (req, res) => {
-  req.user.favNews.forEach(elm => {
-    if (elm == req.query.id)
-    {
-      res.status(304).json('')
-      return
-    }
-  })
+  if (!req.user)
+  {
+    res.json({ status: "redirect", path: "/auth/login" })
+    return
+  }
+  if (req.user.favNews.includes(req.query.id))
+  {
+    res.json({ status: "indb" })
+    return
+  }
 
   User.findByIdAndUpdate(req.user._id, { $push: { favNews: req.query.id } })
-    .then(updated => res.status(200).json(updated))
+    .then(updated => res.status(200).json({ status: "ok" }))
     .catch(err => console.log("Ha ocrurrido un error: ", err))
 })
 
-router.delete('/delete-favorite?', ensureLoggedIn('/auth/login'), (req, res) => {
+router.delete('/delete-favorite?', (req, res) => {
 
-  req.user.favNews.forEach((elm, idx) => {
-    if (elm === req.query.id)
-    {
-      req.user.favNews.splice(idx, 1)
+  if (!req.user)
+  {
+    res.json({ status: "redirect", path: "/auth/login" })
+    return
+  }
 
-      User.findByIdAndUpdate(req.user._id, { favNews: req.user.favNews })
-        .then(user => res.status(200).json("okay"))
-        .catch(err => console.log(err))
-      return
-    }
-  })
+  req.user.favNews.splice(req.user.favNews.indexOf(req.query.id), 1)
+
+  User.findByIdAndUpdate(req.user._id, { favNews: req.user.favNews })
+    .then(user => res.status(200).json({ status: "ok" }))
+    .catch(err => console.log(err))
 })
 
 router.put('/add-news', (req, res) => {

@@ -13,7 +13,7 @@
                     <a class="link" href="{{url}}">Read the new</a>
                 </div>
                 <div class="col-md-4">
-                    <a class="fav-image" {{favorite}} id="{{id}}">
+                    <a class="fav-image" {{#if favorite}} favorite {{/if}} id="{{id}}">
                         <div class="fav-link">
                             <figure><img class=" icon" src="../../images/filled_star.png" alt="add-fav">
                             </figure>
