@@ -29,15 +29,13 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  if (username === "" || password === "")
-  {
+  if (username === "" || password === "") {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
-    if (user !== null)
-    {
+    if (user !== null) {
       res.render("auth/signup", { message: "The username already exists" });
       return;
     }
