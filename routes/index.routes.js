@@ -65,12 +65,17 @@ router.delete('/delete-favorite?', (req, res) => {
     return
   }
 
-  req.user.favNews.splice(req.user.favNews.indexOf(req.query.id), 1)
+  News.findOne({ idNew: req.query.id })
+    .then(notice => {
+      req.user.favNews.splice(req.user.favNews.indexOf(notice._id), 1)
 
-  User.findByIdAndUpdate(req.user._id, { favNews: req.user.favNews })
-    .then(user => res.status(200).json({ status: "ok" }))
-    .catch(err => console.log(err))
+      User.findByIdAndUpdate(req.user._id, { favNews: req.user.favNews })
+        .then(user => res.status(200).json({ status: "ok" }))
+        .catch(err => console.log(err))
+    }).catch(err => err)
+
 })
+
 
 router.put('/add-news', (req, res) => {
 
