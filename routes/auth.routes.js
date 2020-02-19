@@ -52,15 +52,15 @@ router.post("/signup", (req, res, next) => {
 
     newUser.save()
       .then(() => {
-        req.login()
+        req.session.user = newUser
         res.redirect("/");
       })
+      .then(() => req.login(newUser))
       .catch(err => {
         res.render("auth/signup", { message: "Something went wrong" });
       })
   });
 });
-
 
 router.get("/logout", (req, res) => {
   req.logout();
