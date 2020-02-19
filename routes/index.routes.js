@@ -78,4 +78,20 @@ router.put('/add-news', (req, res) => {
 
 })
 
+// router.get('/search/:sch', (req, res, next) => {
+//   let searchkey = req.params.sch
+//   axiosApi.get(`/search?keywords=${searchkey}&apiKey=${process.env.apiKey}`)
+//     // .then(news => {
+//     //   if (req.user) {
+//     //     req.user.favNews.forEach(elm => {
+//     //       news.data.news.forEach(elm_ => {
+//     //         if (elm === elm_.id) elm.favorite = true
+//     //       })
+//     //     })
+//     //   }
+//     .then(x => res.render('index', { news: news.data.news }))
+//     .catch(err => console.log("Ha habido un error: ", err))
+// })
+
+
 module.exports = router;
