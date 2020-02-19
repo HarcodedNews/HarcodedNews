@@ -6,10 +6,12 @@ document.querySelector('#commentFrom').onsubmit = e => {
     // alert("fsdaf")
     e.preventDefault()
     // console.log("enviado")
-    const id = document.querySelector('#commentInfo').dataset.id
+    const id = document.querySelector('#commentInfo').getAttribute('dataid')
+    console.log(id)
     const commentInfo = document.getElementById("commentInfo").value
 
     axios.post('comments/', { commentInfo, id })
         .then(sent => console.log(sent))
         .catch(err => console.log(`error: ${err}`))
 }
+
