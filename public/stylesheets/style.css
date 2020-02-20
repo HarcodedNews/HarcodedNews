@@ -17,7 +17,7 @@ body {
 .hidden {
   display: none; }
 
-img {
+.newsCard .image {
   width: 100%;
   height: 100px;
   object-fit: cover; }
@@ -36,8 +36,7 @@ a {
     color: #646464; }
 
 .fav-image img {
-  width: 40%;
-  object-fit: none; }
+  width: 40%; }
 
 .userimage {
   width: 90px; }
