@@ -12,7 +12,8 @@ const bcryptSalt = 10;
 const uploadCloud = require('../config/cloudinary.config')
 
 router.get("/login", (req, res, next) => {
-  if (req.user) {
+  if (req.user)
+  {
     res.redirect("/profile")
   }
   res.render("auth/login", { "message": req.flash("error") });
@@ -26,7 +27,8 @@ router.post("/login", passport.authenticate("local", {
 }));
 
 router.get("/signup", (req, res, next) => {
-  if (req.user) {
+  if (req.user)
+  {
     res.redirect("/profile")
   }
   res.render("auth/signup");
@@ -35,13 +37,15 @@ router.get("/signup", (req, res, next) => {
 router.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  if (username === "" || password === "") {
+  if (username === "" || password === "")
+  {
     res.render("auth/signup", { message: "Indicate username and password" });
     return;
   }
 
   User.findOne({ username }, "username", (err, user) => {
-    if (user !== null) {
+    if (user !== null)
+    {
       res.render("auth/signup", { message: "The username already exists" });
       return;
     }

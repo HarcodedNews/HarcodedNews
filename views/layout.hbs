@@ -30,18 +30,23 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      {{#if user}}
       <li class="nav-item active">
         <a class="nav-link" href="/profile">Profile</a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/auth/signup">SignUp</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link active" href="/auth/login">Login</a>
-      </li>
-      <li class="nav-item active">
         <a class="nav-link" href="/auth/logout">Logout</a>
       </li>
+      {{else }}
+      <li class="nav-item active">
+        <a class="nav-link" href="/auth/signup">Sign up</a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link active" href="/auth/login">Log In</a>
+      </li>
+      {{/if}}
+
     </ul>
     <form class="form-inline my-2 my-lg-0" method="POST" action="/search?">
       <input class="form-control mr-sm-2" type="search" name="keywords" placeholder="Search" aria-label="Search">

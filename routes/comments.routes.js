@@ -59,6 +59,7 @@ router.get('/create-comments/:id', (req, res) => {
         .then(notice => {
             if (req.user)
             {
+                notice.user = true
                 req.user.favNews.forEach(elm => {
                     if (elm._id == req.params.id)
                     {

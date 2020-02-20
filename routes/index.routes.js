@@ -16,12 +16,14 @@ const axios_ = require('axios')
 const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" })
 
 router.get('/', (req, res) => {
-  let response
+  let response = {}
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
-      response = news.data.news
+      response.news = news.data.news
       if (req.user)
       {
+        response.user = true
+
         User.findById(req.user._id)
           .populate("favNews")
           .then(userAndNews => {
@@ -35,7 +37,7 @@ router.get('/', (req, res) => {
             })
           }).catch(err => err)
       }
-    }).then(() => res.render('index', { news: response }))
+    }).then(() => res.render('index', response))
     .catch(err => console.log("Ha habido un error: ", err))
 })
 

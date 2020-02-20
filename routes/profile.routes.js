@@ -13,6 +13,7 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
             return user
         })
         .then(user => {
+            user.user = true
             res.render('./auth/profile', user)
         })
 
