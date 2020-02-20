@@ -13,5 +13,7 @@ document.querySelector('#commentFrom').onsubmit = e => {
     axios.post('comments/', { commentInfo, id })
         .then(data => window.location = data.data.path)
         .catch(err => console.log(`error: ${err}`))
+
+    document.getElementById("commentInfo").value = ""
 }
 

@@ -8,7 +8,17 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 
 router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
     User.findById(req.user._id)
-        .then(user => res.render('./auth/profile', user))
+        .populate('favNews')
+        // .populate('favNews.comments')
+        .then(user => {
+            //console.log(user)
+            return user
+        })
+        .then(user => {
+            console.log(user)
+            res.render('./auth/profile', user)
+        })
+
 
 })
 router.post('/add-image', uploadCloud.single('photoupload'), (req, res, next) => {
@@ -16,5 +26,6 @@ router.post('/add-image', uploadCloud.single('photoupload'), (req, res, next) =>
         .then(() => res.redirect('/profile'))
         .catch(err => console.log(`este es el error: ${err}`))
 })
+
 
 module.exports = router;

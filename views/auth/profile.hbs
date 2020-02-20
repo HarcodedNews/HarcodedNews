@@ -1,7 +1,6 @@
 <h1>Bienvenido {{username}}.</h1>
 
 <section>
-    <h2>Esta es tu información:</h2>
     <p>Usuario: {{username}}</p>
     {{#if photo}}
     <img class="userimage" src="{{photo}}" alt="{{username}}">
@@ -11,10 +10,17 @@
     {{/if}}
     <form action="/profile/add-image" method="POST" enctype="multipart/form-data">
         <input type="file" name="photoupload"><br>
-        <input type="submit" value="Save"><br>
+        <input class="btn btn-outline-dark btn-sm my-2" type="submit" value="Save"><br>
     </form>
     <br>
-    <h2>Estas son tus noticias favoritas:</h2>
+    <div class="container">
+        <h2>Estas son tus noticias favoritas</h2>
+        <div class="row">
+
+            {{>newsCardProfile this}}
+
+        </div>
+    </div>
 
 </section>
 {{!-- {{#each user}}

@@ -7,6 +7,7 @@ const userSchema = new Schema({
   password: String,
   photo: String,
   favNews: [{ type: Schema.Types.ObjectId, ref: "News" }]
+
 }, {
   timestamps: true
 })
