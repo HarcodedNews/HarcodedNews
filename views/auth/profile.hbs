@@ -1,29 +1,27 @@
-<h1>Bienvenido {{username}}.</h1>
+<div class="container profile">
+    <h1>Welcome {{username}}</h1>
 
-<section>
-    <p>Usuario: {{username}}</p>
-    {{#if photo}}
-    <img class="userimage" src="{{photo}}" alt="{{username}}">
-    <p> <small>Si quieres cambiar tu imagen de perfil, haz click aquí:</small></p>
-    {{else}}
-    <p>Puedes añadir imagen aqui</p>
-    {{/if}}
-    <form action="/profile/add-image" method="POST" enctype="multipart/form-data">
-        <input type="file" name="photoupload"><br>
-        <input class="btn btn-outline-dark btn-sm my-2" type="submit" value="Save"><br>
-    </form>
-    <br>
-    <div class="container">
-        <h2>Estas son tus noticias favoritas</h2>
-        <div class="row">
+    <section>
+        {{#if photo}}
+        <img class="userimage" src="{{photo}}" alt="{{username}}">
+        <p> <small>If you want to change your image, click here:</small></p>
+        {{else}}
+        <p>Add your image here:</p>
+        {{/if}}
+        <form action="/profile/add-image" method="POST" enctype="multipart/form-data">
+            <input type="file" name="photoupload"><br>
+            <input class="btn btn-outline-dark btn-sm my-2" type="submit" value="Save"><br>
+        </form>
+        <br>
+        <div class="container">
+            <h2>These are your favorites news</h2>
+            <div class="row">
 
-            {{>newsCardProfile this}}
+                {{>newsCardProfile this}}
 
+            </div>
         </div>
-    </div>
-    <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
-    <script src="/javascripts/profile-favs.js"></script>
+</div>
+<script src='https://unpkg.com/axios/dist/axios.min.js'></script>
+<script src="/javascripts/profile-favs.js"></script>
 </section>
-{{!-- {{#each user}}
-<p>{{username}}</p>
-{{/each}} --}}

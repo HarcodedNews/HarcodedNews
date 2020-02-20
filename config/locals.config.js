@@ -1,4 +1,4 @@
 module.exports = app => {
-    app.locals.title = 'HarcodedNews :D'
+    app.locals.title = 'HarcodedNews'
 }
 
