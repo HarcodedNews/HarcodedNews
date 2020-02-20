@@ -5,7 +5,7 @@ const axios = require('axios')
 const User = require('../models/User.model')
 const News = require('../models/News.model')
 
-const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
+//const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 const axios_ = require('axios')
 
 // const isLogged = (req, res, next) => {
@@ -15,7 +15,7 @@ const axios_ = require('axios')
 
 const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" })
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   let response
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
@@ -35,8 +35,7 @@ router.get('/', (req, res, next) => {
             })
           }).catch(err => err)
       }
-      res.render('index', { news: response })
-    })
+    }).then(() => res.render('index', { news: response }))
     .catch(err => console.log("Ha habido un error: ", err))
 })
 
@@ -92,22 +91,35 @@ router.put('/add-news', (req, res) => {
     })
     .catch(err => console.log("ERROR WEEE: ", err))
 
+
 })
 
-// router.get('/search/:sch', (req, res, next) => {
-//   let searchkey = req.params.sch
-//   axiosApi.get(`/search?keywords=${searchkey}&apiKey=${process.env.apiKey}`)
-//     // .then(news => {
-//     //   if (req.user) {
-//     //     req.user.favNews.forEach(elm => {
-//     //       news.data.news.forEach(elm_ => {
-//     //         if (elm === elm_.id) elm.favorite = true
-//     //       })
-//     //     })
-//     //   }
-//     .then(x => res.render('index', { news: news.data.news }))
-//     .catch(err => console.log("Ha habido un error: ", err))
-// })
+router.post('/search?', (req, res) => res.redirect(`/search?keywords=${req.body.keywords}`))
+
+router.get('/search?', (req, res) => {
+  let response
+  axiosApi.get(`/search?keywords=${req.query.keywords}&apiKey=${process.env.apiKey}`)
+    .then(news => {
+      response = news.data.news
+      if (req.user)
+      {
+        User.findById(req.user._id)
+          .populate("favNews")
+          .then(userAndNews => {
+            news.data.news.forEach(elm => {
+              userAndNews.favNews.forEach(elm_ => {
+                if (elm.id == elm_.idNew)
+                {
+                  elm.favorite = true
+                }
+              })
+            })
+          }).catch(err => err)
+      }
+    })
+    .then(() => res.render('index', { news: response }))
+    .catch(err => err)
+})
 
 
-module.exports = router;
+module.exports = router
