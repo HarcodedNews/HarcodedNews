@@ -20,13 +20,15 @@ router.get('/', (req, res) => {
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
       response = news.data.news
-      if (req.user) {
+      if (req.user)
+      {
         User.findById(req.user._id)
           .populate("favNews")
           .then(userAndNews => {
             news.data.news.forEach(elm => {
               userAndNews.favNews.forEach(elm_ => {
-                if (elm.id == elm_.idNew) {
+                if (elm.id == elm_.idNew)
+                {
                   elm.favorite = true
                 }
               })
@@ -38,11 +40,13 @@ router.get('/', (req, res) => {
 })
 
 router.put('/add-favorite?', (req, res) => {
-  if (!req.user) {
+  if (!req.user)
+  {
     res.json({ status: "redirect", path: "/auth/login" })
     return
   }
-  if (req.user.favNews.includes(req.query.id)) {
+  if (req.user.favNews.includes(req.query.id))
+  {
     res.json({ status: "indb" })
     return
   }
@@ -53,8 +57,8 @@ router.put('/add-favorite?', (req, res) => {
 })
 
 router.delete('/delete-favorite?', (req, res) => {
-
-  if (!req.user) {
+  if (!req.user)
+  {
     res.json({ status: "redirect", path: "/auth/login" })
     return
   }
@@ -75,7 +79,8 @@ router.put('/add-news', (req, res) => {
 
   News.findOne({ idNew: req.body.new.idNew })
     .then(dbnew => {
-      if (dbnew) {
+      if (dbnew)
+      {
         res.json({ status: "ko", id: dbnew._id })
         return
       }

@@ -9,13 +9,10 @@ const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
 router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
     User.findById(req.user._id)
         .populate('favNews')
-        // .populate('favNews.comments')
         .then(user => {
-            //console.log(user)
             return user
         })
         .then(user => {
-            console.log(user)
             res.render('./auth/profile', user)
         })
 
