@@ -1,7 +1,6 @@
 <h1>Bienvenido {{username}}.</h1>
 
 <section>
-    <h2>Esta es tu información:</h2>
     <p>Usuario: {{username}}</p>
     {{#if photo}}
     <img class="userimage" src="{{photo}}" alt="{{username}}">
@@ -14,7 +13,16 @@
         <input type="submit" value="Save"><br>
     </form>
     <br>
-    <h2>Estas son tus noticias favoritas:</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col md-6">
+                <h2>Estas son tus noticias favoritas</h2>
+            </div>
+            <div class="col md-6">
+                <h2>Estos son tus comentarios</h2>
+            </div>
+        </div>
+    </div>
 
 </section>
 {{!-- {{#each user}}

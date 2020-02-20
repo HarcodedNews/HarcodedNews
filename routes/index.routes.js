@@ -18,16 +18,13 @@ const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" 
 router.get('/', (req, res, next) => {
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
-      if (req.user)
-      {
+      if (req.user) {
         User.findById(req.user._id)
           .populate("favNews")
           .then(userAndNews => {
             news.data.news.forEach(elm => {
               userAndNews.favNews.forEach(elm_ => {
-                if (elm.id == elm_.idNew)
-                {
-                  console.log("FAVORITOOOOOOOOO")
+                if (elm.id == elm_.idNew) {
                   elm.favorite = true
                 }
               })
@@ -41,13 +38,11 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/add-favorite?', (req, res) => {
-  if (!req.user)
-  {
+  if (!req.user) {
     res.json({ status: "redirect", path: "/auth/login" })
     return
   }
-  if (req.user.favNews.includes(req.query.id))
-  {
+  if (req.user.favNews.includes(req.query.id)) {
     res.json({ status: "indb" })
     return
   }
@@ -59,8 +54,7 @@ router.put('/add-favorite?', (req, res) => {
 
 router.delete('/delete-favorite?', (req, res) => {
 
-  if (!req.user)
-  {
+  if (!req.user) {
     res.json({ status: "redirect", path: "/auth/login" })
     return
   }
@@ -81,8 +75,7 @@ router.put('/add-news', (req, res) => {
 
   News.findOne({ idNew: req.body.new.idNew })
     .then(dbnew => {
-      if (dbnew)
-      {
+      if (dbnew) {
         res.json({ status: "ko", id: dbnew._id })
         return
       }
