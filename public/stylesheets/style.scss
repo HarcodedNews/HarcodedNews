@@ -1,7 +1,9 @@
 body {
   padding: 0px;
   // font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-    font: 14px Helvetica, sans-serif
+    font: 14px Helvetica, sans-serif;
+    height: 100vh;
+
 }
 .description{
   text-align: justify;
@@ -89,9 +91,13 @@ object-fit: cover;
 }
 
 .index>h1{
-  font-size: 4em;
-  text-align: center;
-  margin-bottom: 20px;
+    font-size: 4em;
+    text-align: center;
+    margin-bottom: 20px;
+    margin: 30px 0;
+}
+.index>h1 a{
+  color: black
 }
 
 footer {
