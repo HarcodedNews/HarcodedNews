@@ -67,8 +67,10 @@ router.post('/create-comments/comments/', (req, res, next) => {
         idNews: req.body.id
     }).then(createdComment => {
         News.findByIdAndUpdate(req.body.id, { $push: { comments: createdComment._id } })
-            .catch(err => err)
-    }).catch(err => err)
+            .then(updated => res.json({ status: "ok", path: `/comments/create-comments/${updated._id}` }))
+            .catch(err => console.log("este es el error", err))
+    })
+        .catch(err => err)
 })
 
 

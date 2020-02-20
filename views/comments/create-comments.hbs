@@ -1,28 +1,43 @@
-<h1>Asi creas un comment</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img src="{{image}}" class="imgComments" alt="News image">
+            </figure>
 
-<figure>
-    <img src="{{image}}" class="imgComments" alt="News image">
-</figure>
+            <h1>{{title}}</h1>
 
-<h2>{{title}}</h2>
+            <h5>{{description}}</h5>
 
-<h5>{{description}}</h5>
+            <img class="imgComments" href="{{url}}">
 
-<img class="imgComments" href="{{url}}">
+            <div>
+                <a href="{{url}}">Lee la noticia completa</a><br>
+            </div>
+            <br>
 
-<div>
-    <a href="{{url}}">Lee la noticia completa</a><br>
-</div>
-<br>
+            <form id="commentFrom">
+                <div>
+                    <label for="the-comment-input"> Comenta: </label>
+                    <input id="commentInfo" dataid="{{id}}" type="text" name="comment" class="the-name">
+                </div>
 
-<form id="commentFrom">
-    <div>
-        <label for="the-comment-input"> Comenta: </label>
-        <input id="commentInfo" dataid="{{id}}" type="text" name="comment" class="the-name">
+                <button> Comment </button>
+            </form>
+        </div>
+
+        <div class="col-md-6">
+            <h3>Comentarios</h3>
+            {{#if comments.[0]}}
+            {{#each comments}}
+            {{>comment this}}
+            {{/each}}
+            {{else}}
+            <h6>Se el primer comentario!!</h6>
+            {{/if}}
+        </div>
     </div>
+</div>
+<figure>
 
-    <button> Comment </button>
-</form>
-
-<script src="/javascripts/add-news.js"></script>
-<script src="/javascripts/comments.js"></script>
+    <script src="/javascripts/add-news.js"></script>
+    <script src="/javascripts/comments.js"></script>

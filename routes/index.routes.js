@@ -52,7 +52,7 @@ router.put('/add-favorite?', (req, res) => {
   }
 
   User.findByIdAndUpdate(req.user._id, { $push: { favNews: req.query.id } })
-    .then(updated => res.status(200).json({ status: "ok" }))
+    .then(() => res.status(200).json({ status: "ok" }))
     .catch(err => console.log("Ha ocrurrido un error: ", err))
 })
 
