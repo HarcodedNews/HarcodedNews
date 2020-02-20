@@ -16,8 +16,10 @@ const axios_ = require('axios')
 const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" })
 
 router.get('/', (req, res, next) => {
+  let response
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
+      response = news.data.news
       if (req.user)
       {
         User.findById(req.user._id)
@@ -27,15 +29,13 @@ router.get('/', (req, res, next) => {
               userAndNews.favNews.forEach(elm_ => {
                 if (elm.id == elm_.idNew)
                 {
-                  console.log("FAVORITOOOOOOOOO")
                   elm.favorite = true
                 }
               })
             })
-            res.render('index', { news: news.data.news })
           }).catch(err => err)
-
       }
+      res.render('index', { news: response })
     })
     .catch(err => console.log("Ha habido un error: ", err))
 })
