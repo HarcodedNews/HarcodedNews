@@ -19,24 +19,14 @@ router.get('/', (req, res, next) => {
   let response
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
-<<<<<<< HEAD
-      if (req.user) {
-=======
       response = news.data.news
-      if (req.user)
-      {
->>>>>>> b00cc712f6c4bb73362173ef4bbe237bfe809cbb
+      if (req.user) {
         User.findById(req.user._id)
           .populate("favNews")
           .then(userAndNews => {
             news.data.news.forEach(elm => {
               userAndNews.favNews.forEach(elm_ => {
-<<<<<<< HEAD
                 if (elm.id == elm_.idNew) {
-=======
-                if (elm.id == elm_.idNew)
-                {
->>>>>>> b00cc712f6c4bb73362173ef4bbe237bfe809cbb
                   elm.favorite = true
                 }
               })

@@ -10,17 +10,15 @@
     {{/if}}
     <form action="/profile/add-image" method="POST" enctype="multipart/form-data">
         <input type="file" name="photoupload"><br>
-        <input type="submit" value="Save"><br>
+        <input class="btn btn-outline-dark btn-sm my-2" type="submit" value="Save"><br>
     </form>
     <br>
     <div class="container">
+        <h2>Estas son tus noticias favoritas</h2>
         <div class="row">
-            <div class="col md-6">
-                <h2>Estas son tus noticias favoritas</h2>
-            </div>
-            <div class="col md-6">
-                <h2>Estos son tus comentarios</h2>
-            </div>
+
+            {{>newsCardProfile this}}
+
         </div>
     </div>
 
