@@ -20,7 +20,8 @@ body {
 .newsCard .image {
   width: 100%;
   height: 100px;
-  object-fit: cover; }
+  object-fit: cover;
+  border-radius: 3px; }
 
 .newsCard {
   background-color: rgba(200, 200, 200, 0.1);
@@ -35,11 +36,17 @@ a {
     text-decoration: none;
     color: #646464; }
 
+.profile h1 {
+  margin-top: 20px; }
+
 .fav-image img {
   width: 40%; }
 
 .userimage {
-  width: 90px; }
+  width: 80%; }
+
+.section-profile {
+  margin-top: 40px; }
 
 .cardsProfile {
   width: 100%;

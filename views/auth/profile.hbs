@@ -1,27 +1,39 @@
-<div class="container profile">
+<div class="profile">
     <h1>Welcome {{username}}</h1>
 
     <section>
-        {{#if photo}}
-        <img class="userimage" src="{{photo}}" alt="{{username}}">
-        <p> <small>If you want to change your image, click here:</small></p>
-        {{else}}
-        <p>Add your image here:</p>
-        {{/if}}
-        <form action="/profile/add-image" method="POST" enctype="multipart/form-data">
-            <input type="file" name="photoupload"><br>
-            <input class="btn btn-outline-dark btn-sm my-2" type="submit" value="Save"><br>
-        </form>
-        <br>
 
-        <div class="container justify-content-beetween">
-            <h2>These are your favorites news</h2>
-            <div class="row">
-
-                {{>newsCardProfile this}}
-
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-7">
+                    <form action="/profile/add-image" method="POST" enctype="multipart/form-data">
+                        <input type="file" name="photoupload"><br>
+                        <input class="btn btn-outline-dark btn-sm my-2" type="submit" value="Save"><br>
+                    </form>
+                    <br>
+                </div>
+                <div class="col-md-5 ">
+                    {{#if photo}}
+                    <img class="userimage" src="{{photo}}" alt="{{username}}">
+                    {{else}}
+                    <p>Add an image</p>
+                    {{/if}}
+                </div>
             </div>
         </div>
+
+
+        <section class="section-profile">
+
+            <div class="container">
+                <h2>These are your favorites news</h2>
+                <div class="row justify-content-beetween">
+
+                    {{>newsCardProfile this}}
+
+                </div>
+            </div>
+        </section>
         <script src='https://unpkg.com/axios/dist/axios.min.js'></script>
         <script src="/javascripts/profile-favs.js"></script>
     </section>
