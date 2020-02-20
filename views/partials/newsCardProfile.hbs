@@ -3,12 +3,22 @@
     <img src="{{this.image}}" alt="{{this.title}}">
     <h1>{{this.title}}</h1>
     {{this.description}}
-    <a class="fav-image" favorite id="{{idNew}}">
-        <div class="fav-link">
-            <figure><img style="width: 10%;" class="icon" src="../../images/filled_star.png" alt="add-fav">
-            </figure>
+
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <a href="/comments/create-comments/{{id}}">Crea tu comentario</a>
+            </div>
+            <div class="col-md-4">
+                <a class="fav-image" favorite id="{{idNew}}">
+                    <div class="fav-link">
+                        <figure><img style="width: 50%;" class="icon" src="../../images/filled_star.png" alt="add-fav">
+                        </figure>
+                    </div>
+                </a>
+                <hr>
+            </div>
         </div>
-    </a>
-    <hr>
+    </div>
 </div>
 {{/each}}

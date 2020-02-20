@@ -56,7 +56,19 @@ const axiosApp = axios.create({ baseURL: "https://api.currentsapi.services/v1" }
 router.get('/create-comments/:id', (req, res) => {
     News.findById({ _id: req.params.id })
         .populate('comments')
-        .then(notice => res.render('comments/create-comments', notice))
+        .then(notice => {
+            if (req.user)
+            {
+                req.user.favNews.forEach(elm => {
+                    if (elm._id == req.params.id)
+                    {
+                        notice.favorite = true
+                        return notice
+                    }
+                })
+            }
+            return notice
+        }).then(notice => res.render('comments/create-comments', notice))
         .catch(err => console.log(err))
 })
 

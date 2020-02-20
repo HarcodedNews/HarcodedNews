@@ -4,25 +4,42 @@
             <img src="{{image}}" class="imgComments" alt="News image">
             </figure>
 
-            <h1>{{title}}</h1>
+            <h1 class="titleNew">{{title}}</h1>
 
-            <h5>{{description}}</h5>
+            <h5 class='description'>{{description}}</h5>
 
-            <img class="imgComments" href="{{url}}">
+            <img class="imgComments image" href="{{url}}">
 
             <div>
-                <a href="{{url}}">Lee la noticia completa</a><br>
+                <a class="link" href="{{url}}">Lee la noticia completa</a><br>
             </div>
             <br>
 
-            <form id="commentFrom">
-                <div>
-                    <label for="the-comment-input"> Comenta: </label>
-                    <input id="commentInfo" dataid="{{id}}" type="text" name="comment" class="the-name">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <form id="commentFrom">
+                            <div>
+                                <label for="the-comment-input"> Comenta: </label>
+                                <input id="commentInfo" dataid="{{id}}" type="text" name="comment" class="the-name">
+                            </div>
+                            <button> Comment </button>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="fav-image" {{#if favorite}} favorite {{/if}} id="{{idNew}}">
+                            <div class="fav-link">
+                                <figure><img class=" icon" src="../../images/filled_star.png" alt="add-fav">
+                                </figure>
+                            </div>
+                            <div class="quit-fav-link">
+                                <figure><img class="icon" src="../../images/empty-star.png" alt="quit-fav"></figure>
+                            </div>
+                        </a>
+                    </div>
                 </div>
+            </div>
 
-                <button> Comment </button>
-            </form>
         </div>
 
         <div class="col-md-6">
@@ -39,5 +56,7 @@
 </div>
 <figure>
 
+    <script src="/javascripts/favorite.js"></script>
+    <script src="/javascripts/main-page.js"></script>
     <script src="/javascripts/add-news.js"></script>
     <script src="/javascripts/comments.js"></script>
