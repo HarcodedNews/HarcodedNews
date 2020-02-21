@@ -14,7 +14,9 @@ a {
     color: #646464; }
 
 .windowWith {
-  min-height: 100vh; }
+  min-height: 100vh;
+  display: flex;
+  align-items: center; }
 
 .navbar-dark .navbar-nav .active > .nav-link:hover {
   background-color: white;

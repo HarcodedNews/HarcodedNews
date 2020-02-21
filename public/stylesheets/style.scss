@@ -20,6 +20,8 @@ a {
 
 .windowWith{
     min-height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .navbar-dark .navbar-nav .active>.nav-link:hover{
