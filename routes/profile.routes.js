@@ -1,7 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const User = require("../models/User.model");
-const axios = require('axios')
 const uploadCloud = require('../config/cloudinary.config')
 
 const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
@@ -19,7 +18,7 @@ router.get('/', ensureLoggedIn('/auth/login'), (req, res) => {
 
 
 })
-router.post('/add-image', uploadCloud.single('photoupload'), (req, res, next) => {
+router.post('/add-image', uploadCloud.single('photoupload'), (req, res) => {
     User.findByIdAndUpdate(req.user._id, { photo: req.file.secure_url }, { new: true })
         .then(() => res.redirect('/profile'))
         .catch(err => console.log(`este es el error: ${err}`))

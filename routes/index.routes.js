@@ -5,13 +5,8 @@ const axios = require('axios')
 const User = require('../models/User.model')
 const News = require('../models/News.model')
 
-//const { ensureLoggedIn, ensureLoggedOut } = require('connect-ensure-login')
-const axios_ = require('axios')
 
-// const isLogged = (req, res, next) => {
-//   if (req.isAuthenticated()) return next()
-//   return res.status(304).json('/auth/login')
-// }
+const axios_ = require('axios')
 
 const axiosApi = axios_.create({ baseURL: "https://api.currentsapi.services/v1" })
 
@@ -21,8 +16,7 @@ router.get('/', (req, res) => {
     .then(news => {
       response.news = news.data.news
       console.log(response.news)
-      if (req.user)
-      {
+      if (req.user) {
         response.user = true
 
         return User
@@ -34,15 +28,13 @@ router.get('/', (req, res) => {
 
       response.news.forEach(elm => {
         userAndNews.favNews.forEach(elm_ => {
-          if (elm.id == elm_.idNew)
-          {
+          if (elm.id == elm_.idNew) {
             elm.favorite = true
           }
         })
       })
       response.news.forEach(elm => {
-        if (!elm.image.includes('https://'))
-        {
+        if (!elm.image.includes('https://')) {
           elm.image = undefined
         }
       })
@@ -52,13 +44,11 @@ router.get('/', (req, res) => {
 })
 
 router.put('/add-favorite?', (req, res) => {
-  if (!req.user)
-  {
+  if (!req.user) {
     res.json({ status: "redirect", path: "/auth/login" })
     return
   }
-  if (req.user.favNews.includes(req.query.id))
-  {
+  if (req.user.favNews.includes(req.query.id)) {
     res.json({ status: "indb" })
     return
   }
@@ -69,8 +59,7 @@ router.put('/add-favorite?', (req, res) => {
 })
 
 router.delete('/delete-favorite?', (req, res) => {
-  if (!req.user)
-  {
+  if (!req.user) {
     res.json({ status: "redirect", path: "/auth/login" })
     return
   }
@@ -91,8 +80,7 @@ router.put('/add-news', (req, res) => {
 
   News.findOne({ idNew: req.body.new.idNew })
     .then(dbnew => {
-      if (dbnew)
-      {
+      if (dbnew) {
         res.json({ status: "ko", id: dbnew._id })
         return
       }
@@ -110,8 +98,7 @@ router.get('/search?', (req, res) => {
   axiosApi.get(`/search?keywords=${req.query.keywords}&apiKey=${process.env.apiKey}`)
     .then(news => {
       response.news = news.data.news
-      if (req.user)
-      {
+      if (req.user) {
         response.user = true
         return User.findById(req.user._id)
           .populate("favNews")
@@ -120,15 +107,13 @@ router.get('/search?', (req, res) => {
     }).then(userAndNews => {
       news.data.news.forEach(elm => {
         userAndNews.favNews.forEach(elm_ => {
-          if (elm.id == elm_.idNew)
-          {
+          if (elm.id == elm_.idNew) {
             elm.favorite = true
           }
         })
       })
       response.news.forEach(elm => {
-        if (!elm.image.includes('https://'))
-        {
+        if (!elm.image.includes('https://')) {
           elm.image = undefined
         }
       })

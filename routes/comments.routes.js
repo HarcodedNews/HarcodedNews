@@ -2,26 +2,21 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 const News = require('../models/News.model')
-const User = require('../models/User.model')
 const Comment = require('../models/Comment.model')
-const axiosApp = axios.create({ baseURL: "https://api.currentsapi.services/v1" })
 
 router.get('/create-comments/:id', (req, res) => {
     News.findById({ _id: req.params.id })
         .populate('comments')
         .then(notice => {
-            if (req.user)
-            {
+            if (req.user) {
                 notice.user = true
                 req.user.favNews.forEach(elm => {
-                    if (elm._id == req.params.id)
-                    {
+                    if (elm._id == req.params.id) {
                         notice.favorite = true
                     }
                 })
             }
-            if (!notice.image.includes('https://'))
-            {
+            if (!notice.image.includes('https://')) {
                 notice.image = undefined
             }
             return notice
@@ -30,7 +25,7 @@ router.get('/create-comments/:id', (req, res) => {
         .catch(err => res.render('error'))
 })
 
-router.post('/create-comments/comments/', (req, res, next) => {
+router.post('/create-comments/comments/', (req, res) => {
     Comment.create({
         comment: req.body.commentInfo,
         iauthorName: req.user.username,
