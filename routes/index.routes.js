@@ -39,10 +39,7 @@ router.get('/', (req, res) => {
         })
       })
     }).catch(err => err)
-    .then(() => {
-      console.log(response.news)
-      res.render('index', response)
-    })
+    .then(() => res.render('index', response))
     .catch(err => console.log("Ha habido un error: ", err))
 })
 
@@ -103,28 +100,29 @@ router.put('/add-news', (req, res) => {
 router.post('/search?', (req, res) => res.redirect(`/search?keywords=${req.body.keywords}`))
 
 router.get('/search?', (req, res) => {
-  let response
+  let response = {}
   axiosApi.get(`/search?keywords=${req.query.keywords}&apiKey=${process.env.apiKey}`)
     .then(news => {
-      response = news.data.news
+      response.news = news.data.news
       if (req.user)
       {
-        User.findById(req.user._id)
+        response.user = true
+        return User.findById(req.user._id)
           .populate("favNews")
-          .then(userAndNews => {
-            news.data.news.forEach(elm => {
-              userAndNews.favNews.forEach(elm_ => {
-                if (elm.id == elm_.idNew)
-                {
-                  elm.favorite = true
-                }
-              })
-            })
-          }).catch(err => err)
+
       }
-    })
-    .then(() => res.render('index', { news: response }))
-    .catch(err => err)
+    }).then(userAndNews => {
+      news.data.news.forEach(elm => {
+        userAndNews.favNews.forEach(elm_ => {
+          if (elm.id == elm_.idNew)
+          {
+            elm.favorite = true
+          }
+        })
+      })
+    }).catch(err => err)
+    .then(() => res.render('index', response))
+    .catch(err => res.render('index'))
 })
 
 
