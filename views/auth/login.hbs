@@ -1,19 +1,18 @@
 <h2>Login</h2>
-
+<br>
 <form action="/auth/login" method="POST" id="form-container">
   <label for="username">Username</label>
-  <input id="username" type="text" name="username" placeholder="JonSnow">
+  <input class="form-control col-md-2" id="username" type="text" name="username" placeholder="JonSnow">
 
-  <br><br>
+  <br>
 
   <label for="password">Password</label>
-  <input id="password" type="password" name="password" placeholder="Your password">
+  <input class="form-control col-md-2" id="password" type="password" name="password" placeholder="Your password">
   <br>
   {{#if message }}
   <div class="error-message">{{ message }}</div>
   {{/if}}
 
-  <br>
 
   <button class="btn btn-outline-dark btn-sm my-2">Login</button>
 
