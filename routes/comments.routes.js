@@ -10,14 +10,19 @@ router.get('/create-comments/:id', (req, res) => {
     News.findById({ _id: req.params.id })
         .populate('comments')
         .then(notice => {
-            if (req.user) {
+            if (req.user)
+            {
                 notice.user = true
                 req.user.favNews.forEach(elm => {
-                    if (elm._id == req.params.id) {
+                    if (elm._id == req.params.id)
+                    {
                         notice.favorite = true
-                        return
                     }
                 })
+            }
+            if (!notice.image.includes('https://'))
+            {
+                notice.image = undefined
             }
             return notice
         })
