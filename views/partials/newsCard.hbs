@@ -4,7 +4,8 @@
     <div class="newsCard">
         <div class="container fixed">
             <a href="{{url}}">
-                <figure><img class="image" src="{{image}}" alt="News image"></figure>
+                <figure><img class="image" {{#if image}} src="{{image}}" {{else}} src="./images/default-image.png"
+                        {{/if}} alt="News image"></figure>
             </a>
             <h4 class="titleNew">{{title}}</h4>
             <p class="description">{{description}}</p>

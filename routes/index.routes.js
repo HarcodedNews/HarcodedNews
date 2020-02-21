@@ -20,6 +20,7 @@ router.get('/', (req, res) => {
   axiosApi.get(`/search?apiKey=${process.env.apiKey}`)
     .then(news => {
       response.news = news.data.news
+      console.log(response.news)
       if (req.user)
       {
         response.user = true
@@ -30,14 +31,20 @@ router.get('/', (req, res) => {
       }
     })
     .then(userAndNews => {
+
       response.news.forEach(elm => {
         userAndNews.favNews.forEach(elm_ => {
           if (elm.id == elm_.idNew)
           {
-            console.log("FAVORITOOOOOO")
             elm.favorite = true
           }
         })
+      })
+      response.news.forEach(elm => {
+        if (!elm.image.includes('https://'))
+        {
+          elm.image = undefined
+        }
       })
     }).catch(err => err)
     .then(() => res.render('index', response))
@@ -118,6 +125,12 @@ router.get('/search?', (req, res) => {
             elm.favorite = true
           }
         })
+      })
+      response.news.forEach(elm => {
+        if (!elm.image.includes('https://'))
+        {
+          elm.image = undefined
+        }
       })
     }).catch(err => err)
     .then(() => res.render('index', response))

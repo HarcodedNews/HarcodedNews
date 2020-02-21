@@ -4,7 +4,8 @@
             <div class="col-md-6">
                 <div style="text-align: center;">
 
-                    <img src="{{image}}" class="imgComments" alt="News image">
+                    <img {{#if image}} src="{{image}}" {{else}} src="../../images/default-image.png" {{/if}}
+                        class="imgComments" alt="News image">
                     </figure>
 
                     <h1 class="titleNew">{{title}}</h1>
