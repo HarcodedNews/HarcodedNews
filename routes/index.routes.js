@@ -24,7 +24,8 @@ router.get('/', (req, res) => {
       {
         response.user = true
 
-        return User.findById(req.user._id)
+        return User
+          .findById(req.user._id)
           .populate("favNews")
       }
     })
@@ -93,8 +94,6 @@ router.put('/add-news', (req, res) => {
         .catch(err => console.log("ha habido un error: ", err))
     })
     .catch(err => console.log("ERROR WEEE: ", err))
-
-
 })
 
 router.post('/search?', (req, res) => res.redirect(`/search?keywords=${req.body.keywords}`))
