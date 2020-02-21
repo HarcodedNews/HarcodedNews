@@ -24,20 +24,25 @@ router.get('/', (req, res) => {
       {
         response.user = true
 
-        User.findById(req.user._id)
+        return User.findById(req.user._id)
           .populate("favNews")
-          .then(userAndNews => {
-            news.data.news.forEach(elm => {
-              userAndNews.favNews.forEach(elm_ => {
-                if (elm.id == elm_.idNew)
-                {
-                  elm.favorite = true
-                }
-              })
-            })
-          }).catch(err => err)
       }
-    }).then(() => res.render('index', response))
+    })
+    .then(userAndNews => {
+      response.news.forEach(elm => {
+        userAndNews.favNews.forEach(elm_ => {
+          if (elm.id == elm_.idNew)
+          {
+            console.log("FAVORITOOOOOO")
+            elm.favorite = true
+          }
+        })
+      })
+    }).catch(err => err)
+    .then(() => {
+      console.log(response.news)
+      res.render('index', response)
+    })
     .catch(err => console.log("Ha habido un error: ", err))
 })
 

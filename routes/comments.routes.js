@@ -64,13 +64,13 @@ router.get('/create-comments/:id', (req, res) => {
                     if (elm._id == req.params.id)
                     {
                         notice.favorite = true
-                        return notice
+                        return
                     }
                 })
             }
             return notice
         }).then(notice => res.render('comments/create-comments', notice))
-        .catch(err => console.log(err))
+        .catch(err => res.render('error'))
 })
 
 router.post('/create-comments/comments/', (req, res, next) => {
