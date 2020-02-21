@@ -55,9 +55,6 @@ transition: color .15s ease-in-out,background-color .15s ease-in-out,border-colo
     }
   }
 }
-// .fav-image img{
-//   width: 40%; 
-// }
 
 .icon-styles{
   width: 20%
@@ -78,6 +75,7 @@ transition: color .15s ease-in-out,background-color .15s ease-in-out,border-colo
 }
 .description{
   text-align: justify;
+  margin: 10px 0;
 }
 
 // Perfil
@@ -108,9 +106,9 @@ transition: color .15s ease-in-out,background-color .15s ease-in-out,border-colo
   margin-top: 20px;
 }
 .img-comments{
-  width: 200px  
+  width: 200px;
+  margin-bottom: 20px
 }
-
 
 .createComment{
   margin-top:5px
