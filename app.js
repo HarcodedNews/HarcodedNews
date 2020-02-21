@@ -19,5 +19,4 @@ app.use('/auth', require('./routes/auth.routes'))
 app.use('/comments', require('./routes/comments.routes'))
 app.use('/profile', require('./routes/profile.routes'))
 
-
 module.exports = app
