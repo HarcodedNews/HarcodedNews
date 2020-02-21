@@ -11,7 +11,7 @@
             <img class="imgComments image" href="{{url}}">
 
             <div>
-                <a class="link" href="{{url}}">Lee la noticia completa</a><br>
+                <a class="link" href="{{url}}">Go to the new</a><br>
             </div>
             <br>
 
@@ -20,7 +20,7 @@
                     <div class="col-md-8">
                         <form id="commentFrom">
                             <div>
-                                <label for="the-comment-input"> Comenta: </label>
+                                <label for="the-comment-input"> Comment: </label>
                                 <input id="commentInfo" dataid="{{id}}" type="text" name="comment" class="the-name">
                             </div>
                             <button> Comment </button>
@@ -43,13 +43,13 @@
         </div>
 
         <div class="col-md-6">
-            <h3>Comentarios</h3>
+            <h3>Comments</h3>
             {{#if comments.[0]}}
             {{#each comments}}
             {{>comment this}}
             {{/each}}
             {{else}}
-            <h6>Se el primer comentario!!</h6>
+            <h6>Be the first comment!!</h6>
             {{/if}}
         </div>
     </div>
